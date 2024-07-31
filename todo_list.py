@@ -6,44 +6,20 @@ def list_tasks(todo_list):
         print("No tasks in the to-do list.")
     else:
         print("Tasks:")
-        for i, task in enumerate(todo_list, 1):
-            print(f"{i}. {task['task']} ({task['status']})")
+        for task in todo_list:
+            print(f"{task['task']} ({task['status']})")
 
-def mark_task_completed(todo_list):
-    if not todo_list:
-        print("No tasks to mark as completed.")
-        return
+def mark_task_completed(todo_list, task_name):
+    for task in todo_list:
+        if task['task'] == task_name:
+            task['status'] = 'Completed'
+            break
 
-    print("Select the task to mark as completed:")
-    list_tasks(todo_list)
-
-    try:
-        task_number = int(input("Enter the task number: "))
-        if 1 <= task_number <= len(todo_list):
-            todo_list[task_number - 1]['status'] = 'Completed'
-            print(f"Task '{todo_list[task_number - 1]['task']}' marked as completed.")
-        else:
-            print("Invalid task number.")
-    except ValueError:
-        print("Please enter a valid number.")
-
-def mark_task_in_progress(todo_list):
-    if not todo_list:
-        print("No tasks to mark as in progress.")
-        return
-
-    print("Select the task to mark as in progress:")
-    list_tasks(todo_list)
-
-    try:
-        task_number = int(input("Enter the task number: "))
-        if 1 <= task_number <= len(todo_list):
-            todo_list[task_number - 1]['status'] = 'In Progress'
-            print(f"Task '{todo_list[task_number - 1]['task']}' marked as in progress.")
-        else:
-            print("Invalid task number.")
-    except ValueError:
-        print("Please enter a valid number.")
+def mark_task_in_progress(todo_list, task_name):
+    for task in todo_list:
+        if task['task'] == task_name:
+            task['status'] = 'In progress'
+            break
 
 def clear_tasks(todo_list):
     todo_list.clear()
@@ -67,9 +43,13 @@ def main():
         elif choice == '2':
             list_tasks(todo_list)
         elif choice == '3':
-            mark_task_completed(todo_list)
+            task_name = input("Enter the task to mark as completed: ")
+            mark_task_completed(todo_list, task_name)
+            print(f"Task '{task_name}' marked as completed.")
         elif choice == '4':
-            mark_task_in_progress(todo_list)
+            task_name = input("Enter the task to mark as in progress: ")
+            mark_task_in_progress(todo_list, task_name)
+            print(f"Task '{task_name}' marked as in progress.")
         elif choice == '5':
             clear_tasks(todo_list)
             print("All tasks cleared.")
