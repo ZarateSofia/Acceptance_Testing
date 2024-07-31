@@ -7,11 +7,11 @@ to_do_list = []
 def step_impl(context):
     global to_do_list
     to_do_list = []
-@when('the user adds the task "{task}"')
-def step_impl(context, task):
+@when('the user adds the task Buy food')
+def step_impl(context):
     global to_do_list
-    todo_list.add_task(to_do_list, task)
-@then('the to-do list should contain 1. "{task}" (Pending)')
-def step_impl(context, task):
+    todo_list.add_task(to_do_list,"Buy food")
+@then('the to-do list should contain Buy food (Pending)')
+def step_impl(context):
     global to_do_list
     todo_list.list_tasks(todo_list)
