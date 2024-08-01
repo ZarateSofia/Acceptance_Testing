@@ -1,3 +1,5 @@
+todo_list = []
+
 def add_task(todo_list, task):
     todo_list.append({'task': task, 'status': 'Pending'})
 
@@ -25,7 +27,6 @@ def clear_tasks(todo_list):
     todo_list.clear()
 
 def main():
-    todo_list = []
     while True:
         print("\nTo-Do List Menu:")
         print("1. Add a task")
